@@ -1,7 +1,7 @@
 package homework6;
 
 public class MyArrayList<T> extends MyList<T> {
-    private final int BASE_SIZE_ARRAY = 10;
+    private final static int BASE_SIZE_ARRAY = 10;
     private T[] mainArray;
     private int arraySize = BASE_SIZE_ARRAY;
 
@@ -11,7 +11,8 @@ public class MyArrayList<T> extends MyList<T> {
 
     @SafeVarargs
     public MyArrayList(T...t){
-        this.arraySize = (int)(t.length*1.5);
+        int l = t.length >= BASE_SIZE_ARRAY ? (int)(t.length*1.5) : BASE_SIZE_ARRAY;
+        this.arraySize = l;
         mainArray = (T[])new Object[arraySize];
 
         int count = 0;
@@ -36,11 +37,9 @@ public class MyArrayList<T> extends MyList<T> {
     }
     @Override
     public void clear() {
-        for (int i = 0; i < size; i++) {
-            mainArray[i] = null;
-        }
+        mainArray = (T[])new Object[BASE_SIZE_ARRAY];
+        arraySize = BASE_SIZE_ARRAY;
         size = 0;
-        expanseMainArray();
     }
     @Override
     public T get(int index){

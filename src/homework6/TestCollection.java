@@ -36,7 +36,13 @@ public class TestCollection {
             System.out.println(arrayList.get(9));
             System.out.println(arrayList.get(10));
 
-//        MyArrayList<String> arrayList = new MyArrayList<>();
+            arrayList.clear();
+        System.out.println(arrayList.size());
+        arrayList.add("10 element");
+        System.out.println(arrayList.get(0));
+
+
+        //        MyArrayList<String> arrayList = new MyArrayList<>();
 //        arrayList.add("first element");
 //        arrayList.add("second element");
 //        arrayList.add("third element");

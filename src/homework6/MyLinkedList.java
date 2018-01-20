@@ -6,6 +6,7 @@ public class MyLinkedList<T> extends MyList<T> implements ListInterface<T> {
     private Essence<T> currentEssence;
     private Essence<T> firstEssence;
 
+
     public MyLinkedList(){
     }
 
@@ -58,7 +59,14 @@ public class MyLinkedList<T> extends MyList<T> implements ListInterface<T> {
 
     @Override
     public void clear() {
-
+        if (size == 0) return;
+        while (size >= 1){
+            Essence e = currentEssence.prevEssence;
+            currentEssence = null;
+            currentEssence = e;
+            size--;
+        }
+        firstEssence = null;
     }
 
     @Override

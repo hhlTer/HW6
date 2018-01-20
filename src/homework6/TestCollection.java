@@ -6,7 +6,7 @@ public class TestCollection {
     public static void main(String[] args) {
 
 //        MyLinkedList<String> arrayList = new MyLinkedList<>();
-        Queue<String> arrayList = new Queue<>();
+        Stack<String> arrayList = new Stack<>();
         arrayList.add("first element");
         arrayList.add("second element");
         arrayList.add("third element");
@@ -40,15 +40,17 @@ public class TestCollection {
         System.out.println(arrayList.size());
 //        arrayList.add("10 element");
 
-        System.out.println(arrayList.poll());
-        System.out.println(arrayList.poll());
+        System.out.println(arrayList.pop());
+        System.out.println(arrayList.pop());
         System.out.println("===============================");
 
         arrayList.add("sas");
-        System.out.println(arrayList.poll());
+        System.out.println(arrayList.pop());
         System.out.println(arrayList.peek());
         System.out.println(arrayList.peek());
         System.out.println(arrayList.peek());
+
+
 
         //        MyArrayList<String> arrayList = new MyArrayList<>();
 //        arrayList.add("first element");

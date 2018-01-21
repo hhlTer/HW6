@@ -6,5 +6,4 @@ public interface ListInterface<T> {
     void clear();
     T get(int index);
     int size();
-
 }

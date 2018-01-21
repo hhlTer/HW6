@@ -1,6 +1,8 @@
 package homework6;
 
-public class MyArrayList<T> extends MyList<T> {
+public class MyArrayList<T> implements ListInterface<T> {
+
+    private int size = 0;
     private final static int BASE_SIZE_ARRAY = 10;
     private T[] mainArray;
     private int arraySize = BASE_SIZE_ARRAY;
@@ -11,8 +13,7 @@ public class MyArrayList<T> extends MyList<T> {
 
     @SafeVarargs
     public MyArrayList(T...t){
-        int l = t.length >= BASE_SIZE_ARRAY ? (int)(t.length*1.5) : BASE_SIZE_ARRAY;
-        this.arraySize = l;
+        this.arraySize = t.length >= BASE_SIZE_ARRAY ? (int)(t.length*1.5) : BASE_SIZE_ARRAY;
         mainArray = (T[])new Object[arraySize];
 
         int count = 0;
@@ -46,6 +47,14 @@ public class MyArrayList<T> extends MyList<T> {
         return mainArray[index];
     }
 
+    @Override
+    public int size() {
+        return size;
+    }
+
+    /**
+     * change array list size
+     */
     private void expanseMainArray(){
         arraySize = size < BASE_SIZE_ARRAY ? BASE_SIZE_ARRAY : (int)(size*1.5);
         Object[] temp = new Object[arraySize];

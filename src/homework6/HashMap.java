@@ -5,6 +5,7 @@ public class HashMap<K, V> {
     private int size = 0;
     private Essence firstEssence;
     private Essence currentEssence;
+    private Essence tempEssence;
 
     HashMap(){}
     HashMap(K key, V val){
@@ -16,44 +17,26 @@ public class HashMap<K, V> {
         currentEssence = firstEssence;
         size++;
     }
-    public void add(K key, V value){
-        if (size==0) addFirst(key, value);
-        else {
-            int count = -1;
-            Essence e = firstEssence;
-            do {
-                count++;
-                if (key.equals(e.key)){
-                    e.value = value;
-                    return;
-                }
-                e = e.next;
-            } while (count <= size);
-
+    public void put(K key, V value){
+        if (size==0) {      //only if first adding;
+            addFirst(key, value);
+        }
+        if (has(key)){
+            tempEssence.value = value;
+            return;
+        }
             this.currentEssence = new Essence(key, value, currentEssence);
             size++;
-        }
     }
     public V get(K key){
-        Essence temp = firstEssence;
-        int count = -1;
-        while (!temp.key.equals(key) || !temp.key.equals(currentEssence.key)){
-            temp = temp.next;
-        }
-        if (temp.key.equals(key)) return (V)temp.value;
+        if (has(key)) return tempEssence.value;
         else throw new NullPointerException();
     }
 
     public void remove(K key){
-        Essence temp = firstEssence;
-        int count = size;
-        while (!temp.key.equals(key) || count!=0){
-            temp = temp.next;
-            count--;
-        }
-        if (temp.key.equals(key)){
-            temp.prev.next = temp.next;
-            temp.next.prev = temp.prev;
+        if (has(key)){
+            tempEssence.prev.next = tempEssence.next;
+            tempEssence.next.prev = tempEssence.prev;
             size--;
         } else throw new NullPointerException();
     }
@@ -70,14 +53,24 @@ public class HashMap<K, V> {
         size = 0;
     }
 
-    public boolean has(K key){
+    /**
+     * tempEssence - essence, with has request key.
+     *               can be using for eny operation with finding essence
+     *               (put, remove, get)
+     */
+    public boolean has(K key) {
         Essence temp = firstEssence;
         int count = size;
-        while (!temp.key.equals(key) || count >= 0){
+        while (!temp.key.equals(key)) {
+            if (--count == 0) break;
             temp = temp.next;
-            count--;
         }
-        return  (temp.key.equals(key));
+        boolean b = temp.key.equals(key);
+        if (b) tempEssence = temp;
+        return (b);
+    }
+    public int size(){
+       return size;
     }
 
     class Essence{

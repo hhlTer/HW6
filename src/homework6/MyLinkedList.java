@@ -1,8 +1,8 @@
 package homework6;
 
-public class MyLinkedList<T> extends MyList<T> {
+public class MyLinkedList<T> implements ListInterface<T> {
 
-//    private int size = 0;
+    private int size = 0;
     Essence currentEssence;
     Essence firstEssence;
 
@@ -73,6 +73,11 @@ public class MyLinkedList<T> extends MyList<T> {
     public T get(int index) throws ArrayIndexOutOfBoundsException{
         if (index < 0 || index >= size) throw new ArrayIndexOutOfBoundsException();
         return index == size-1 ? currentEssence.essence : getCorrectEssence(index).essence;
+    }
+
+    @Override
+    public int size() {
+        return size;
     }
 
 //    @Override

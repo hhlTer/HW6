@@ -1,10 +1,10 @@
 package homework6;
 
-public class MyLinkedList<T> extends MyList<T> implements ListInterface<T> {
+public class MyLinkedList<T> extends MyList<T> {
 
 //    private int size = 0;
-    Essence<T> currentEssence;
-    Essence<T> firstEssence;
+    Essence currentEssence;
+    Essence firstEssence;
 
 
     public MyLinkedList(){
@@ -13,11 +13,11 @@ public class MyLinkedList<T> extends MyList<T> implements ListInterface<T> {
     @Override
     public void add(T t) {
         if (size == 0) {
-            firstEssence = new Essence<>(t);
+            firstEssence = new Essence(t);
             currentEssence = firstEssence;
         }
         else
-        currentEssence = new Essence<>(t, currentEssence);
+        currentEssence = new Essence(t, currentEssence);
         size++;
     }
 
@@ -37,16 +37,16 @@ public class MyLinkedList<T> extends MyList<T> implements ListInterface<T> {
             return;
         }
 
-        Essence<T> tempEssence = getCorrectEssence(index);
+        Essence tempEssence = getCorrectEssence(index);
         tempEssence.prevEssence.nextEssence = tempEssence.nextEssence;
         tempEssence.nextEssence.prevEssence = tempEssence.prevEssence;
         size--;
     }
 
-    private Essence<T> getCorrectEssence(int index){
+    private Essence getCorrectEssence(int index){
         boolean firstHalf = index < (size >> 1);
         Xcrement change = firstHalf ? (x -> x + 1) : (x -> x - 1);
-        Essence<T> e = firstHalf ? firstEssence : currentEssence;
+        Essence e = firstHalf ? firstEssence : currentEssence;
         int count = firstHalf ? 0 : size-1;
 
         while (count != index ){
@@ -60,13 +60,13 @@ public class MyLinkedList<T> extends MyList<T> implements ListInterface<T> {
     @Override
     public void clear() {
         if (size == 0) return;
-        while (size >= 1){
-            Essence e = currentEssence.prevEssence;
-            currentEssence = null;
-            currentEssence = e;
-            size--;
-        }
-        firstEssence = null;
+        firstEssence.essence = null;
+        firstEssence.nextEssence = null;
+        firstEssence.prevEssence = null;
+        currentEssence.essence = null;
+        currentEssence.nextEssence = null;
+        currentEssence.prevEssence = null;
+        size = 0;
     }
 
     @Override
@@ -80,25 +80,22 @@ public class MyLinkedList<T> extends MyList<T> implements ListInterface<T> {
 //        return size;
 //    }
 
-    class Essence<T>{
+    class Essence{
         T essence;
-        Essence<T> prevEssence;
-        Essence<T> nextEssence;
+        Essence prevEssence;
+        Essence nextEssence;
 
         Essence(T t){
             essence = t;
             prevEssence = null;
             nextEssence = null;
         }
-        Essence(T t, Essence<T> currentEssence){
+        Essence(T t, Essence currentEssence){
             prevEssence = currentEssence;
             essence = t;
             nextEssence = null;
             prevEssence.nextEssence = this;
         }
 
-        Essence<T> getEntyty(){
-            return this;
-        }
     }
 }

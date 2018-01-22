@@ -1,13 +1,13 @@
 package homework6;
 
-public class MyLinkedList<T> implements ListInterface<T> {
+public class LinkedList<T> implements ListInterface<T> {
 
-    private int size = 0;
+    int size = 0;
     Essence currentEssence;
     Essence firstEssence;
 
 
-    public MyLinkedList(){
+    public LinkedList(){
     }
 
     @Override

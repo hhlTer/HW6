@@ -1,6 +1,7 @@
 package homework6;
 
-public class Queue<T> extends MyLinkedList<T> implements FIFO<T> {
+public class Queue<T> extends LinkedList<T> implements FIFO<T> {
+
     @Override
     public T poll() {
         if (size > 0) {

@@ -1,6 +1,6 @@
 package homework6;
 
-public class Stack<T>  extends MyLinkedList<T> implements LIFO<T> {
+public class Stack<T>  extends LinkedList<T> implements LIFO<T> {
 
     @Override
     public T pop() {

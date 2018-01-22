@@ -1,18 +1,18 @@
 package homework6;
 
-public class MyArrayList<T> implements ListInterface<T> {
+public class ArrayList<T> implements ListInterface<T> {
 
     private int size = 0;
     private final static int BASE_SIZE_ARRAY = 10;
     private T[] mainArray;
     private int arraySize = BASE_SIZE_ARRAY;
 
-    public MyArrayList(){
+    public ArrayList(){
         mainArray = (T[])new Object[arraySize];
     }
 
     @SafeVarargs
-    public MyArrayList(T...t){
+    public ArrayList(T...t){
         this.arraySize = t.length >= BASE_SIZE_ARRAY ? (int)(t.length*1.5) : BASE_SIZE_ARRAY;
         mainArray = (T[])new Object[arraySize];
 
